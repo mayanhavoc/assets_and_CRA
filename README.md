@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Assets and CRA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To include images and CSS, you can import them in JS files. 
 
-## Available Scripts
+The standard convention is to make your css file the same name as your component. 
 
-In the project directory, you can run:
+For example -> `House.css` for `House` component
 
-### `npm start`
+Then we import it at the top of the `House.js` component
+    - create-react-app will automatically load that CSS
+Conventional to add `classNAme="House"` onto `House` div (top level element)
+    - and use that as prefix for sub-items to style: 
+```Javascript
+<div className="House">
+    <p className="House-title"> {this.props.title} </p>
+    <p className="House-address"> {this.props.addr} </p>
+</div>
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+We import the CSS but what we import doesn't apply only to the file. That's why we use specific classes, usually prefixed with the name of the component, to apply them selectively.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+If we write general styles and we apply them everywhere, they'll apply all over the place. There are ways of scoping CSS rules, but it requires external tools. 
 
-### `npm test`
+## Images
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+We import them with the same syntax as components
 
-### `npm run build`
+- Store images in `src/folder` with the components. If there's many files, you can structure it however you want. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Conclussions
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Importing assets is something that we do all the time in React. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In case you forget, you can always to refer to the `App.js` file that `create-react-app` give you: 
 
-### `npm run eject`
+```Javascript
+import React, {Component} from 'react';
+import logo from "./logo.svg"; // you're import an SVG
+import "./App.css"; // you're importing a CSS file
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+class App extends Component {
+    render() {
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <p>
+                        Edit <code>src/App.js</code> and save to reload.
+                    </p>
+                    <p>This React app is INCREDIBLE </p>
+                </header>
+            </div>
+        );
+    }
+}
+export default App;
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+What Colt does: 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Every time he makes a new component `Dog.js`, `<Dog />`, he also makes a new CSS file with the same name `Dog.CSS` and then import it at the top of every component I create. 
